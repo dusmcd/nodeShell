@@ -4,18 +4,19 @@ const ls = require('./ls');
 process.stdout.write('prompt > ');
 process.stdin.on('data', data => {
   const cmd = data.toString().trim();
-  let output;
   switch (cmd) {
     case 'pwd':
-      output = pwd();
+      pwd()
       break;
     case 'ls':
       ls();
       break;
     default:
-      output = 'command not recognized';
+      process.stdout.write('command not recognized\n');
+      process.stdout.write('prompt > ');
       break;
   }
-  // process.stdout.write(output);
-  process.stdout.write('\nprompt > ');
 });
+
+  // process.stdout.write(output);
+  // process.stdout.write('\nprompt > ');
