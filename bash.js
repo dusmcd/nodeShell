@@ -1,15 +1,21 @@
 const pwd = require('./pwd');
 const ls = require('./ls');
+const cat = require('./cat');
 
 process.stdout.write('prompt > ');
 process.stdin.on('data', data => {
-  const cmd = data.toString().trim();
+  let cmd = data.toString().trim();
+  const file = cmd.split(' ')[1];
+  cmd = cmd.split(' ')[0];
   switch (cmd) {
     case 'pwd':
-      pwd()
+      pwd();
       break;
     case 'ls':
       ls();
+      break;
+    case 'cat':
+      cat(file);
       break;
     default:
       process.stdout.write('command not recognized\n');
@@ -18,5 +24,5 @@ process.stdin.on('data', data => {
   }
 });
 
-  // process.stdout.write(output);
-  // process.stdout.write('\nprompt > ');
+// process.stdout.write(output);
+// process.stdout.write('\nprompt > ');
